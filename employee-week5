@@ -108,9 +108,12 @@ ON P.PNO=A.PNO WHERE P.PLOC=D.DLOC;
 
 -- QUERY 4
 
-SELECT E.EMPNO
-FROM EMPLOYEE E,INCENTIVES I
-WHERE E.EMPNO!=I.EMPNO;
+select e.empno from employee e where e.empno!= all (SELECT  E.EMPNO
+FROM EMPLOYEE E 
+inner join INCENTIVES I
+on i.empno=e.empno)
+;
+
 
 
 -- QUERY 3
