@@ -56,6 +56,38 @@ CREATE TABLE ASSIGNED_TO(
 
 );
 
+-- 3. Retrieve the employee numbers of all employees who work on project located in Bengaluru, Hyderabad, or Mysuru
+-- 4. Get Employee ID’s of those employees who didn’t receive incentives
+-- 5. Write a SQL query to find the employees name, number, dept, job_role, department location and project location who are working for a project location same as his/her department location.
+
+
+
+-- QUERY 5
+
+SELECT E.EMPNAME,E.EMPNO,D.DNAME,A.JOB_ROLE,D.DLOC,P.PLOC
+FROM EMPLOYEE E
+INNER JOIN  DEPT D
+ON D.DEPTNO=E.DEPTNO
+INNER JOIN ASSIGNED_TO A
+ON A.EMPNO=E.EMPNO
+INNER JOIN PROJECT P
+ON P.PNO=A.PNO WHERE P.PLOC=D.DLOC;
+
+-- QUERY 4
+
+SELECT E.EMPNO
+FROM EMPLOYEE E,INCENTIVES I
+WHERE E.EMPNO!=I.EMPNO;
+
+
+-- QUERY 3
+
+SELECT E.EMPNO
+FROM EMPLOYEE E
+INNER JOIN DEPT D
+ON D.DEPTNO=E.DEPTNO
+WHERE DLOC IN ("BANGALORE","HYDERBAD","MYSORE");
+
 
 
 
